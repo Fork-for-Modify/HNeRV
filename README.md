@@ -41,7 +41,7 @@ The code is organized as follows:
 ### Training HNeRV
 HNeRV of 1.5M is specified with ```'--modelsize 1.5'```, and we balance parameters with ```'-ks 0_1_5 --reduce 1.2' ```
 ```
-python train_nerv_all.py  --outf 1120  --data_path data/bunny --vid bunny   \
+python train_nerv_all.py --gpus 1 --outf 1120  --data_path data/bunny --vid bunny   \
    --conv_type convnext pshuffel --act gelu --norm none  --crop_list 640_1280  \
     --resize_list -1 --loss L2  --enc_strds 5 4 4 2 2 --enc_dim 64_16 \
     --dec_strds 5 4 4 2 2 --ks 0_1_5 --reduce 1.2   \
@@ -63,7 +63,7 @@ To evaluate pre-trained model, use ```'--eval_only --weight [CKT_PATH]'``` to ev
 For model and embedding quantization, use ```'--quant_model_bit 8 --quant_embed_bit 6'```.\
 To dump images or videos, use  ```'--dump_images --dump_videos'```.
 ```
-python train_nerv_all.py  --outf 1120  --data_path data/bunny --vid bunny   \
+python train_nerv_all.py  --gpus 1 --outf 1120  --data_path data/bunny --vid bunny   \
    --conv_type convnext pshuffel --act gelu --norm none  --crop_list 640_1280  \
     --resize_list -1 --loss L2  --enc_strds 5 4 4 2 2 --enc_dim 64_16 \
     --dec_strds 5 4 4 2 2 --ks 0_1_5 --reduce 1.2  \

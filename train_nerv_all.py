@@ -54,6 +54,8 @@ def main():
         choices=['relu', 'leaky', 'leaky01', 'relu6', 'gelu', 'swish', 'softplus', 'hardswish'])
 
     # General training setups
+    parser.add_argument('--gpus', type=str, default='none',
+                        help='visible gpu ids')
     parser.add_argument('-j', '--workers', type=int, help='number of data loading workers', default=4)
     parser.add_argument('-b', '--batchSize', type=int, default=1, help='input batch size')
     parser.add_argument('--start_epoch', type=int, default=-1, help='starting epoch')
@@ -91,6 +93,9 @@ def main():
 
     args = parser.parse_args()
     torch.set_printoptions(precision=4) 
+    if args.gpus != "none":
+        os.environ["CUDA_VISIBLE_DEVICES"] = args.gpus
+
     if args.debug:
         args.eval_freq = 1
         args.outf = 'output/debug'
